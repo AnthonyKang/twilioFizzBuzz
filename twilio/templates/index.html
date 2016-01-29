@@ -1,0 +1,45 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+	<h1>Enter a number and time delay</h1>
+	<h3>Number format must be like +14084125023</h3>
+	<h3>Enter single integers for time fields
+	<form action="/form-submit" method="Post">
+		<label for="number">Number </label>
+		<input type="text" name="number" placeholder="+14084125023">
+		<label for="hours">Hours</label>
+		<input type="text" name="hours"  value="0">
+		<label for="minutes">Minutes</label>
+		<input type="text" name="minutes"  value="0">
+		<label for="seconds">Seconds</label>
+		<input type="text" name="seconds"  value="0">
+		<input type="submit" name="my-form" value="Send">
+	</form>
+	<table class="table">
+	<tr>
+		<th>Phone Number</th>
+		<th>Digits</th>
+		<th>Time</th>
+	</tr>
+	{% for number in numbers %}
+		<tr>
+			<td>{{ numbers[loop.index0] }}</td>
+			<td>{{ digits[loop.index0] }}</td>
+			<td>{{ times[loop.index0] }}</td>
+			<td>
+				<form action="/replay" method="Post">
+				<div style="display:none;">
+					<input type="text" name="number" value="{{ numbers[loop.index0] }}">
+					<input type="text" name="digits" value="{{ digits[loop.index0] }}">
+					<input type="text" name="ids" value="{{ ids[loop.index0] }}">
+				</div>
+					<input type="submit" name="my-form" value="Replay">
+				</form>
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+</html>
